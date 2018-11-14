@@ -1,0 +1,17 @@
+.container {
+   
+    height: 175px;
+    display: flex;
+    align-items: center;
+
+}
+.playlist-cover {
+    padding: 0px;
+    height: 60px;
+    width: 60px;
+}
+.playlist-cover img{
+    height: 60px;
+    width: 60px;
+}
+ 

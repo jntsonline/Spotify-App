@@ -1,0 +1,11 @@
+<div *ngIf="playlists">
+    <span>{{playlists.message}}</span>
+    <div class="container" fxLayout="row"  fxLayoutAlign="space-around center" > 
+      <mat-card class="playlist-cover" *ngFor="let playlist of playlists.playlists.items">
+        <img [src]="playlist.images[0].url">
+      </mat-card> 
+    </div>
+    <button (click)="getPlay()">get playlists</button>
+</div>
+
+

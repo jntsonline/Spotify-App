@@ -1,4 +1,7 @@
-<mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-around center">   
+<mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-around center"> 
+    <div class="cover-art" >
+        <img [src]="track.album.images[0].url" >
+    </div>  
     <button mat-icon-button>
       <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
     </button> 

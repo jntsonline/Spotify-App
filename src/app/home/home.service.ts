@@ -17,18 +17,10 @@ export class HomeService {
   httpOptions: any;
   param1: any;
 
-  setToken(data) {
-    this.token = data;
-  }
-  getToken() {
-    return this.token;
-  }
 
   getPlaylists() {
     return this.http.get('https://api.spotify.com/v1/browse/featured-playlists');
   }
-
-
 
   constructor(private http: HttpClient) {
 

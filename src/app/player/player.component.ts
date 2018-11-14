@@ -11,11 +11,14 @@ export class PlayerComponent implements OnInit {
   constructor(private player: PlayerService) {
     this.audio = new Audio();
   }
+
   load(url) {
-    this.audio.src = url;
+    this.player.prepareUrl(url).subscribe((data: any) => {
+      this.audio.src = data.preview_url;
+    });
   }
   play() {
-    this.load('https://api.spotify.com/v1/tracks/6kLCHFM39wkFjOuyPGLGeQ');
+    this.load('3n3Ppam7vgaVa1iaRUc9Lp');
     this.audio.play();
   }
 

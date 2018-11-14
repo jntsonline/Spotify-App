@@ -3,3 +3,14 @@
     height: 90px!important;
     box-shadow: 0 0 8px rgba(0,0,0,.4);
 }
+.cover-art{
+    position: absolute;
+    left: 0;
+    bottom:0;
+
+    z-index: 10;
+}
+.cover-art img {
+    height: 50px;
+    width: 50px;
+}

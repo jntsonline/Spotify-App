@@ -28,7 +28,7 @@ constructor(
   ) {
 
   this.param1 = new URLSearchParams(this.router.url);
-  Service.setToken(this.param1);
+
 }
 
   ngOnInit() {

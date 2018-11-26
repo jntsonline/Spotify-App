@@ -1,0 +1,11 @@
+<div class="cover-container" (mouseover)="showBtn = true" (mouseleave)="showBtn = false">
+    <div class="card" matRipple>
+        <img [src]="item.track.album.images[0].url">
+    </div>
+    <div class="card-btns" *ngIf="showBtn">
+        <button class="card-btn" (click)="btnPlay()" >
+            <mat-icon class="card-btn-mat-icon" aria-label="menu">play_arrow</mat-icon>
+        </button>
+    </div>
+    
+</div>

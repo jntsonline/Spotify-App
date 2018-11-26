@@ -1,5 +1,35 @@
-<div class="container"  fxLayout="column" >
-        <app-toolbar></app-toolbar>
-        <app-playlists></app-playlists>
-        <app-player class="player"></app-player>
+<div class="container">
+    <div class="recentlyPlayed" fxLayout="column" *ngIf="recentlyPlayed">    
+        <span class="recentlyPlayed-header">Recently Played</span>
+        <div fxLayout="row">
+          <span  *ngFor="let item of recentlyPlayed.items | slice:0:10" class="recentlyPlayed-item" (mouseover)="item.show = true" (mouseleave)="item.show=false">
+              <app-cover class="recentlyPlayed-card" [item]="item" (playClick)="AddToQueue($event)"></app-cover>
+              <div fxLayout="column" class="recentlyPlayed-card-title" *ngIf="item.show">
+                <a>{{item.track.name}}</a>
+                <a class="subtitle">{{item.track.artists[0].name}}</a>
+              </div>
+          </span>
+                  
+        </div>
+      </div>
+
+      <div *ngIf="featuredPlaylists">
+          <div class="headline-header">
+              <span>{{featuredPlaylists.message}}</span>
+              <div class="pallete"></div>
+          </div>
+            <mat-grid-list cols="5" >
+                <mat-grid-tile *ngFor="let playlist of featuredPlaylists.playlists.items | slice:0:10" >
+                  <mat-card fxFlex class="card">
+                      <img [src]="playlist.images[0].url">
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            <button (click)="getPlay()">get playlists</button>
+        </div>
 </div>
+
+
+
+
+

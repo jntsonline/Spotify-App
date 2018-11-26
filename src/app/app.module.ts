@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,7 +10,7 @@ import { Interceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { MusicComponent } from './music/music.component';
 import { LoginComponent } from './login/login.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
@@ -29,26 +30,44 @@ import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRippleModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
 
 import { UserComponent } from './user/user.component';
-import { PlaylistsComponent } from './playlists/playlists.component';
+import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
+import { CoverComponent } from './cover/cover.component';
+import { LibraryComponent } from './library/library.component';
+import { PlaylistsComponent } from './library/playlists/playlists.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'home/:access', component: HomeComponent }
+  { path: 'music', component: MusicComponent, children: [
+    {
+      path: '', redirectTo: 'home', pathMatch: 'full'
+    },
+    {
+      path: 'home', component: HomeComponent
+    },
+    {
+      path: 'library', component: LibraryComponent
+    }
+  ] },
+  { path: 'music/:access', component: MusicComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    MusicComponent,
     LoginComponent,
     ToolbarComponent,
     UserComponent,
-    PlaylistsComponent,
-    PlayerComponent
+    HomeComponent,
+    PlayerComponent,
+    CoverComponent,
+    LibraryComponent,
+    PlaylistsComponent
   ],
   imports: [
     Interceptor,
@@ -72,7 +91,10 @@ const appRoutes: Routes = [
     MatListModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatRippleModule,
+    MatTableModule,
+    BrowserAnimationsModule
   ],
   providers: [
 

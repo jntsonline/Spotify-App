@@ -1,0 +1,20 @@
+<div class="container"  fxLayout="column" >
+        <app-toolbar class="toolbar"></app-toolbar>
+        <div fxLayout="row" class="content-container">
+                <div class="nav-container"> 
+
+                        <div class="nav-btn" matRipple *ngFor="let nav of navs" routerLink="{{nav.state}}">
+                                <div class="nav-btn-icon">
+                                        <mat-icon class="card-btn-mat-icon" aria-label="menu">{{nav.icon}}</mat-icon>
+                                </div>
+                                <div class="nav-btn-title">{{nav.name}}</div>
+                        </div>     
+                </div>
+                <div fxFlex>
+                        <router-outlet ></router-outlet>
+                </div>
+              
+                <div class="nav-container"></div>            
+        </div>        
+        <app-player class="player"></app-player>
+</div>

@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   response_type = 'token';
   client_id = encodeURIComponent('6d392f160f154cc9b7075b9b054ae089');
-  scope = encodeURIComponent('');
-  redirect_uri = encodeURIComponent('http://172.16.1.188:4200/home/');
+  scope = encodeURIComponent('user-read-recently-played');
+  redirect_uri = encodeURIComponent('http://172.16.1.188:4200/music');
 
   getLogin() {
     alert('login');

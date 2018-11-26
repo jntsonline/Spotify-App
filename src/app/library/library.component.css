@@ -1,0 +1,6 @@
+.tab-group{ 
+    width: 100%;
+}
+[mat-align-tabs=center] .mat-tab-labels {
+  background-color: #FFFFFF !important;
+}

@@ -1,14 +1,23 @@
-<mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-around center"> 
-    <div class="cover-art" >
-        <img [src]="track.album.images[0].url" >
-    </div>  
-    <button mat-icon-button>
-      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-    </button> 
-    <button mat-fab color="primary" class="mat-elevation-z0" (click)="play()">
-        <mat-icon aria-label="menu">play_arrow</mat-icon>
-    </button>   
-    <button mat-icon-button>
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
+<mat-toolbar class="toolbar" fxLayout="row" > 
+    <div fxFlex fxLayout="row">
+        <div class="cover-art" *ngIf="loadedTrack">
+            <img [src]="loadedTrack.album.images[0].url" >
+        </div>  
+        <div *ngIf="loadedTrack" class="track-title" fxLayout="column">
+            <div class="playing-title" fxFlex>{{loadedTrack.name}}</div>
+            <div class="playing-details" fxFlex>{{loadedTrack.artists[0].name}} - {{loadedTrack.album.name}}</div>
+        </div>
+    </div>
+    <div fxFlex class="container-center">
+        <button mat-fab color="primary" [disabled]="trackLoaded" *ngIf="isPlaying == false" class="mat-elevation-z0" (click)="play()">
+            <mat-icon aria-label="menu">play_arrow</mat-icon>
+        </button>  
+        <button mat-fab color="primary" *ngIf="isPlaying == true" class="mat-elevation-z0" (click)="pause()">
+            <mat-icon aria-label="menu">pause_arrow</mat-icon>
+        </button>         
+    </div>
+    <div fxFlex>
+
+    </div>   
+
 </mat-toolbar>

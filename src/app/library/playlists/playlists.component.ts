@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../home/home.service';
-
+import { PlaylistsService } from './playlists.service';
 
 @Component({
   selector: 'app-playlists',
@@ -8,19 +7,15 @@ import { HomeService } from '../home/home.service';
   styleUrls: ['./playlists.component.css']
 })
 export class PlaylistsComponent implements OnInit {
-  playlists: any;
+  playlists;
 
+  constructor(private Service: PlaylistsService) { }
 
-
-  getPlay() {
+  ngOnInit() {
     this.Service.getPlaylists().subscribe((data) => {
       console.log(data);
       this.playlists = data;
     });
   }
-  ngOnInit() {
-    this.getPlay();
-  }
-  constructor(private Service: HomeService) { }
 
 }

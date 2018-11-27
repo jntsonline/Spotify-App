@@ -10,32 +10,54 @@
       </div>
       <div class="artist"></div>
       <div class="description">{{trackListData.description}}</div>
+      <div class="description">{{trackListData.tracks.total}} songs</div>
+      <div>
+          <button mat-button>
+            <mat-icon aria-label="menu">radio</mat-icon>
+            RADIO
+          </button>
+          <button mat-button>
+            <mat-icon aria-label="menu">shuffle</mat-icon>
+            SHUFFLE
+          </button>
+          <button mat-button>
+            <mat-icon aria-label="menu">edit</mat-icon>
+            EDIT
+          </button>
+          <button mat-button>
+            <mat-icon aria-label="menu">share</mat-icon>
+            SHARE
+          </button>
+      </div>
     </div>
   </div>
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
-  <ng-container matColumnDef="position">
+  <ng-container matColumnDef="track.uri">
     <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="AddToQueue(element.track.uri)">
+            <mat-icon aria-label="Play song">play_arrow</mat-icon>
+        </button> 
+    </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="name">
+  <ng-container matColumnDef="track.name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.track.name}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+  <ng-container matColumnDef="track.artists">
+      <th mat-header-cell *matHeaderCellDef> Artist </th>
+      <td mat-cell *matCellDef="let element"> {{element.track.artists[0].name}} </td>
+    </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="symbol">

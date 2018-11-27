@@ -4,6 +4,12 @@
     padding: 0;
     box-shadow: 0 0 8px rgba(0,0,0,.4);
 }
+.timer-seeker{
+    position: absolute;
+    top: -23px;
+    left: 82px;
+    width: calc(100% - 74px);
+}
 .cover-art {
     height: 90px;
     width: 90px;
@@ -14,6 +20,7 @@
 }
 .container-center {
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 .track-title {

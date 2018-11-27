@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AgGridModule } from 'ag-grid-angular';
+import { FormsModule } from '@angular/forms';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './auth/token.interceptor';
@@ -32,6 +34,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +44,7 @@ import { CoverComponent } from './cover/cover.component';
 import { LibraryComponent } from './library/library.component';
 import { PlaylistsComponent } from './library/playlists/playlists.component';
 import { TrackListComponent } from './track-list/track-list.component';
+import { from } from 'rxjs';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -80,6 +85,7 @@ const appRoutes: Routes = [
       appRoutes, { enableTracing: false }
      ),
     BrowserModule,
+    AgGridModule.withComponents([]),
     HttpClientModule,
     FlexLayoutModule,
     MatInputModule,
@@ -99,6 +105,8 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatRippleModule,
     MatTableModule,
+    MatSliderModule,
+    FormsModule,    
     BrowserAnimationsModule
   ],
   providers: [

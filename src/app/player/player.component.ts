@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './player.service';
+import { Observable } from 'rxjs';
 
 declare global {
   interface Window { Spotify: any, onSpotifyWebPlaybackSDKReady:any }
@@ -16,9 +17,15 @@ export class PlayerComponent implements OnInit {
   audio;
   isPlaying;
   trackLoaded;
-  loadedTrack;
+  loadedTrack: Observable<any>;
   device_id;
   webPlayer;
+
+  step = 1;
+  minTemp;
+  maxTemp;
+  maxSlider;
+  sliderSeekerValue: any;
 
   constructor(private player: PlayerService) {
     this.audio = new Audio();
@@ -94,19 +101,44 @@ export class PlayerComponent implements OnInit {
       console.log("Music Paused");
     })
   }
+  next(){
+    this.webPlayer.nextTrack().then(() => {
+      console.log('Skipped to next track!');
+      this.webPlayer.getCurrentState().then((data) => {
+        this.loadedTrack = data;
+      });
+    });
+  
+  }
 
   ngOnInit( ) {
     
     this.handleScriptLoad();
     this.registerPlayer();
+    this.minTemp = 0;
+    this.maxSlider = 100;
+    this.sliderSeekerValue = 0;
 
     this.player.getTrack().subscribe((data: any) => {
       console.log(data);
       if(data === null){
-
+        this.isPlaying = false;
       }else{
-        this.player.prepareUrl(data.id, data.type, this.device_id).subscribe((response: any) => {
-          this.loadedTrack = response;       
+        this.player.prepareUrl(data, this.device_id).subscribe((response: any) => {
+          this.webPlayer.getCurrentState().then((data) => {           
+            this.loadedTrack = data;
+            const temp = new Date(1000*Math.round(data.duration/1000))
+            this.maxTemp = temp;
+            let min = 0;
+            this.minTemp = 0;
+            setInterval(() => { 
+              this.minTemp = new Date((min ++ * 1000));
+              console.log(min);             
+             }, 1000);
+          });
+          
+
+
           this.trackLoaded = false;
           this.isPlaying = true;         
         });

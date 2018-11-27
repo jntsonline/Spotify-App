@@ -16,9 +16,10 @@ export class PlayerService {
   getTrack() {
     return this.track.asObservable();
   }
-  prepareUrl(url,type, device_id) {
+  prepareUrl(url, device_id) {
+    console.log(url);
     return this.http.put(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,{
-      uris:[`spotify:${type}:${url}`]
+      uris:[`${url}`,`spotify:track:7e8utCy2JlSB8dRHKi49xM`]
     });
   }
   constructor(private http: HttpClient) { }

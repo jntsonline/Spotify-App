@@ -6,7 +6,7 @@
               <div class="pallete"></div>
           </div>
             <mat-grid-list cols="5" rowHeight="270">
-                <mat-grid-tile *ngFor="let playlist of playlists.items" >
+                <mat-grid-tile *ngFor="let playlist of playlists.items" (click)="goToTracklist()">
                   <mat-card fxFlex class="card">
                       <img [src]="playlist.images[0].url">
                       <div style="height: 20px;">

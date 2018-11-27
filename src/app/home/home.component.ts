@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { HomeService } from './home.service';
 import { PlayerService } from '../player/player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,12 @@ export class HomeComponent implements OnInit {
   recentlyPlayed: any;
 
   AddToQueue(trackId) {
+    console.log(trackId);
     this.Player.setTrack(trackId);
+  }
+  goToTracklist(list) {
+    console.log(list.id);
+    this.router.navigate(['/music/track-list',list.id])
   }
 
   FeaturedPlaylists() {
@@ -34,6 +40,7 @@ export class HomeComponent implements OnInit {
   }
   constructor(
     private Service: HomeService,
-    private Player: PlayerService) { }
+    private Player: PlayerService,
+    private router: Router) { }
 
 }

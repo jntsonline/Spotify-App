@@ -15,7 +15,7 @@ export class CoverComponent implements OnInit {
   }
 
   btnPlay() {
-    this.playClick.emit(this.item.track.id);
+    this.playClick.emit(this.item.track);
   }
   ngOnInit() {
   }

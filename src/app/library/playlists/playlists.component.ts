@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistsService } from './playlists.service';
+import { Router } from '@angular/router';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-playlists',
@@ -9,8 +11,14 @@ import { PlaylistsService } from './playlists.service';
 export class PlaylistsComponent implements OnInit {
   playlists;
 
-  constructor(private Service: PlaylistsService) { }
+  constructor(
+    private Service: PlaylistsService,
+    private router: Router
+    ) { }
 
+  goToTracklist() {
+    this.router.navigate(['/music/track-list'])
+  }
   ngOnInit() {
     this.Service.getPlaylists().subscribe((data) => {
       console.log(data);

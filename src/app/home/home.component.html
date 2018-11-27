@@ -19,13 +19,12 @@
               <div class="pallete"></div>
           </div>
             <mat-grid-list cols="5" >
-                <mat-grid-tile *ngFor="let playlist of featuredPlaylists.playlists.items | slice:0:10" >
-                  <mat-card fxFlex class="card">
+                <mat-grid-tile *ngFor="let playlist of featuredPlaylists.playlists.items | slice:0:10" (click)="goToTracklist(playlist)">
+                  <mat-card fxFlex class="card" matRipple>
                       <img [src]="playlist.images[0].url">
                   </mat-card>
                 </mat-grid-tile>
               </mat-grid-list>
-            <button (click)="getPlay()">get playlists</button>
         </div>
 </div>
 

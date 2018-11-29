@@ -1,0 +1,45 @@
+.container{
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+}
+.logo{
+
+    height: 30%;
+    display: flex;
+    justify-content: center;
+}
+.logo * > {
+    margin: 24px auto;
+    width: 180px;
+    height: 180px;
+    
+}
+.mini-logo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+}
+.mini-logo img {
+    width: 170px;
+    height: 48px;  
+}
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.description > * {
+    font-weight: 400;
+    color: #212121;
+}
+.actions{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

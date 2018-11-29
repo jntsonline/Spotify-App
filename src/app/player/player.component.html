@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar" fxLayout="row" > 
-        <mat-slider class="timer-seeker" min="0" [max]="maxSlider" [step]="step" [(ngModel)]="sliderSeekerValue"></mat-slider>
+        <mat-slider *ngIf="loadedTrack" color="warn" class="timer-seeker" min="0" [max]="maxSlider" step="1" [(ngModel)]="sliderSeekerValue"></mat-slider>
     <div fxFlex fxLayout="row">
         <div class="cover-art"  *ngIf="loadedTrack" >
             <img [src]="loadedTrack.track_window.current_track.album.images[0].url" >
@@ -13,10 +13,10 @@
             <button mat-icon-button (click)="AddToQueue(element.track.uri)">
                     <mat-icon aria-label="Play song">skip_previous</mat-icon>
                 </button> 
-        <button mat-fab color="primary" [disabled]="trackLoaded" *ngIf="isPlaying == false" class="mat-elevation-z0" (click)="play()">
+        <button mat-fab  color="warn" [disabled]="trackLoaded" *ngIf="isPlaying == false" class="mat-elevation-z0" (click)="play()">
             <mat-icon aria-label="menu">play_arrow</mat-icon>
         </button>  
-        <button mat-fab color="primary" *ngIf="isPlaying == true" class="mat-elevation-z0" (click)="pause()">
+        <button mat-fab  color="warn" *ngIf="isPlaying == true" class="mat-elevation-z0" (click)="pause()">
             <mat-icon aria-label="menu">pause_arrow</mat-icon>
         </button>         
         <button mat-icon-button (click)="next()">
@@ -24,7 +24,10 @@
             </button> 
     </div>
     <div fxFlex>
-        <div>{{minTemp | date:'mm:ss'}}/{{maxTemp | date:'mm:ss'}}</div>
-    </div>   
+        <div  class="current-time">
+            <div>{{minTemp | date:'mm:ss'}}/{{maxTemp | date:'mm:ss'}}</div>
+        </div>  
+    </div>
+ 
 
 </mat-toolbar>

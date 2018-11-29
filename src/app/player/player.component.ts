@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './player.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { interval } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 declare global {
-  interface Window { Spotify: any, onSpotifyWebPlaybackSDKReady:any }
+  interface Window { Spotify: any; onSpotifyWebPlaybackSDKReady: any; }
 }
 
 @Component({
@@ -14,21 +16,20 @@ declare global {
 
 
 export class PlayerComponent implements OnInit {
-  audio;
-  isPlaying;
-  trackLoaded;
-  loadedTrack: Observable<any>;
-  device_id;
-  webPlayer;
 
-  step = 1;
-  minTemp;
-  maxTemp;
-  maxSlider;
-  sliderSeekerValue: any;
+  isPlaying;                // Change Play/Pause Btns
+  trackLoaded;              // Show if player has a loaded Track
+  loadedTrack;              // Loaded track data
+  device_id;                // Device id from WebPlayer
+  webPlayer;                // WebPlayer API
 
-  constructor(private player: PlayerService) {
-    this.audio = new Audio();
+  time: Subscription;       // Time counter Observable
+  minTemp;                  // Music current position
+  maxTemp;                  // Music duration
+  maxSlider;                // Maximum Slider position
+  sliderSeekerValue: any;   // Slider current position
+
+  constructor(private playerService: PlayerService) {
     this.isPlaying = false;
     this.trackLoaded = true;
   }
@@ -43,11 +44,10 @@ export class PlayerComponent implements OnInit {
       }
     });
   }
-  
+
 
   registerPlayer() {
     window.onSpotifyWebPlaybackSDKReady = () => {
-     // const token = 'BQA3T4SdNZJ1W89UuSaXahorJ0QpNPpM4OzBHjZghkuKH_HM7FeR-BDO2VltnRsWR0K4O0C6Rskux130ET9aeuAKTfylTbVKMfk8khpydHrurcLiwpea8mYhNQRZP8qLicpZb0WSA_I67kWNxkLg6-DhrShh7wXVO9Q6DP_l';
       this.webPlayer = new window.Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(localStorage.getItem('accessToken')); }
@@ -61,9 +61,12 @@ export class PlayerComponent implements OnInit {
 
       // Playback status updates
       this.webPlayer.addListener('player_state_changed', state => {
-         console.log(state); 
+         console.log(state);
          this.trackLoaded = false;
          this.loadedTrack = state;
+         if (state.paused === true) {
+          this.pause();
+         }
         });
 
       // Ready
@@ -83,64 +86,64 @@ export class PlayerComponent implements OnInit {
             console.log('The Web Playback SDK successfully connected to Spotify!');
         }
         });
-
-
- 
     };
 
   }
   play() {
     this.isPlaying = true;
-    this.webPlayer.resume().then(()=> {
-      console.log("Resumed Music")
-    })
+    this.webPlayer.resume().then(() => {
+      console.log('Resumed Music');
+      this.timeSeeker(this.loadedTrack.duration);
+    });
   }
   pause() {
     this.isPlaying = false;
-    this.webPlayer.pause().then(()=>{
-      console.log("Music Paused");
-    })
+    this.webPlayer.pause().then(() => {
+      console.log('Music Paused');
+      this.time.unsubscribe();
+    });
   }
-  next(){
+  next() {
     this.webPlayer.nextTrack().then(() => {
       console.log('Skipped to next track!');
       this.webPlayer.getCurrentState().then((data) => {
         this.loadedTrack = data;
       });
     });
-  
+  }
+
+  timeSeeker(max) {
+    this.maxTemp = new Date(1000 * Math.round(max / 1000));
+    this.maxSlider = (max / 1000);
+
+    this.time = interval(1000).subscribe((data) => {
+      this.sliderSeekerValue ++;
+      this.minTemp = new Date((this.sliderSeekerValue * 1000));
+      });
   }
 
   ngOnInit( ) {
-    
+
     this.handleScriptLoad();
     this.registerPlayer();
-    this.minTemp = 0;
-    this.maxSlider = 100;
-    this.sliderSeekerValue = 0;
 
-    this.player.getTrack().subscribe((data: any) => {
+
+    this.playerService.getTrack().subscribe((data: any) => {
       console.log(data);
-      if(data === null){
-        this.isPlaying = false;
-      }else{
-        this.player.prepareUrl(data, this.device_id).subscribe((response: any) => {
-          this.webPlayer.getCurrentState().then((data) => {           
-            this.loadedTrack = data;
-            const temp = new Date(1000*Math.round(data.duration/1000))
-            this.maxTemp = temp;
-            let min = 0;
+      if (data === null) { this.isPlaying = false; } else {
+        this.playerService.prepareUrl(data, this.device_id).subscribe((response: any) => {
+          this.webPlayer.getCurrentState().then((currentStateData) => {
+            this.loadedTrack = currentStateData;
             this.minTemp = 0;
-            setInterval(() => { 
-              this.minTemp = new Date((min ++ * 1000));
-              console.log(min);             
-             }, 1000);
+            this.sliderSeekerValue = 0;
+            if (this.time !== undefined) { this.time.unsubscribe(); }
+            this.timeSeeker(currentStateData.duration);
+
           });
-          
 
 
           this.trackLoaded = false;
-          this.isPlaying = true;         
+          this.isPlaying = true;
         });
       }
 

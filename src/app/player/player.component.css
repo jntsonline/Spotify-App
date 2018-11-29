@@ -35,7 +35,14 @@
 .playing-details {
     white-space: nowrap;
     display: inline;
-    color: #616161;
+    color: rgba(0, 0, 0, 0.54);
     font-size: 13px;
     font-weight: 400;   
+}
+.current-time{
+    position: absolute;
+    top: 0;
+    right: 8px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.54);
 }

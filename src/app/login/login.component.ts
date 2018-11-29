@@ -12,11 +12,8 @@ export class LoginComponent implements OnInit {
   redirect_uri = encodeURIComponent('http://localhost:4200/music');
 
   getLogin() {
-    alert('login');
-    window.open(
-      `https://accounts.spotify.com/authorize?` +
-      `response_type=${this.response_type}&client_id=${this.client_id}&scope=${this.scope}&redirect_uri=${this.redirect_uri}`
-      );
+    window.location.href = `https://accounts.spotify.com/authorize?` +
+      `response_type=${this.response_type}&client_id=${this.client_id}&scope=${this.scope}&redirect_uri=${this.redirect_uri}`;
   }
   constructor() { }
 

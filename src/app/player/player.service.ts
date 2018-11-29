@@ -18,8 +18,8 @@ export class PlayerService {
   }
   prepareUrl(url, device_id) {
     console.log(url);
-    return this.http.put(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,{
-      uris:[`${url}`,`spotify:track:7e8utCy2JlSB8dRHKi49xM`]
+    return this.http.put(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+      uris: [`${url}`]
     });
   }
   constructor(private http: HttpClient) { }

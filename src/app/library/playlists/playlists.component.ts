@@ -16,9 +16,11 @@ export class PlaylistsComponent implements OnInit {
     private router: Router
     ) { }
 
-  goToTracklist() {
-    this.router.navigate(['/music/track-list'])
-  }
+    goToTracklist(list) {
+      console.log(list.id);
+      this.router.navigate(['/music/track-list', list.id]);
+    }
+
   ngOnInit() {
     this.Service.getPlaylists().subscribe((data) => {
       console.log(data);

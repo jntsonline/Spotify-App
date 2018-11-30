@@ -1,10 +1,10 @@
-<mat-toolbar class="toolbar">
+<mat-toolbar class="toolbar" [class.mat-elevation-z2]="true">
   <mat-toolbar-row>
-      <button mat-icon-button (click)="sidenavRef.toggle()">
+      <button mat-icon-button>
           <mat-icon aria-label="menu">menu</mat-icon>
       </button> 
 
-      <img class="logo"src="../../assets/img/logo.svg"/> 
+      <img class="logo" src="../../assets/logo.svg"/> 
       <span fxFlex></span>
       <app-user></app-user>   
   </mat-toolbar-row>

@@ -21,6 +21,7 @@ table {
     height: 100%;
     width: 100%;
     border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
   }
   .description-container {
     display: flex;
@@ -37,6 +38,9 @@ table {
     font-size: 34px;
     line-height: 40px;
     font-weight: 400;
+    height: 52px;
+    display: flex;
+    align-items: center;
     color: rgba(0, 0, 0, 0.87);
   }
   .description {
@@ -44,5 +48,17 @@ table {
     height: 24px;
     font-size: 14px;
     line-height: 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
     color: rgba(0, 0, 0, 0.54);
+  }
+  .mat-row:hover {
+    background-color: #eeeeee;
+  }
+  .custom-fab {
+    background-color: white;
+    color: black;
+    margin: 0 16px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
   }

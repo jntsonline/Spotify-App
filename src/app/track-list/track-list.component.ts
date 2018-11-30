@@ -12,35 +12,38 @@ import { PlayerService } from '../player/player.service';
 export class TrackListComponent implements OnInit {
   dataSource;
   trackListData: Observable<any>;
-  displayedColumns: string[] = ['track.uri', 'track.name','track.artists', 'symbol'];
+  displayedColumns: string[] = ['track.uri', 'track.name', 'track.artists', 'track.album'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private service: TrackListService,
     private Player: PlayerService
   ) {
-    this.dataSource = [
-
-    ]
-    
+    this.dataSource = [];
    }
 
-   AddToQueue(itemToPlay) {
-     console.log(itemToPlay);
-    this.Player.setTrack(itemToPlay);
+   AddToQueue(tracks) {
+     const temp = [];
+    tracks.items.map((data) => {
+      temp.push(data.track.uri);
+    });
+    this.Player.setTrack(temp);
+  }
+  playTrack(track) {
+    this.Player.setTrack([track]);
   }
 
    trackList(playlist_id) {
-     this.service.getPlaylist(playlist_id).subscribe((data: any) =>{
+     this.service.getPlaylist(playlist_id).subscribe((data: any) => {
        console.log(data);
       this.trackListData = data;
-      this.dataSource = data.tracks.items
-     })
+      this.dataSource = data.tracks.items;
+     });
    }
 
   ngOnInit() {
     const routeParams = this.activatedRoute.snapshot.params;
-    this.trackList(routeParams.list)
+    this.trackList(routeParams.list);
   }
 
 

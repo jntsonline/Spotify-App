@@ -3,6 +3,7 @@ import { PlayerService } from './player.service';
 import { Observable, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 declare global {
   interface Window { Spotify: any; onSpotifyWebPlaybackSDKReady: any; }
@@ -29,7 +30,7 @@ export class PlayerComponent implements OnInit {
   maxSlider;                // Maximum Slider position
   sliderSeekerValue: any;   // Slider current position
 
-  constructor(private playerService: PlayerService) {
+  constructor(private playerService: PlayerService, private router: Router) {
     this.isPlaying = false;
     this.trackLoaded = true;
   }
@@ -61,7 +62,6 @@ export class PlayerComponent implements OnInit {
 
       // Playback status updates
       this.webPlayer.addListener('player_state_changed', state => {
-         console.log(state);
          this.trackLoaded = false;
          this.loadedTrack = state;
          if (state.paused === true) {
@@ -78,6 +78,7 @@ export class PlayerComponent implements OnInit {
       // Not Ready
       this.webPlayer.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
+        this.device_id = device_id;
       });
 
       // Connect to the player!
@@ -88,6 +89,11 @@ export class PlayerComponent implements OnInit {
         });
     };
 
+  }
+
+  goToTracklist(list) {
+    console.log(list.id);
+    this.router.navigate(['/music/track-list', list.id]);
   }
   play() {
     this.isPlaying = true;
@@ -104,10 +110,14 @@ export class PlayerComponent implements OnInit {
     });
   }
   next() {
+    this.time.unsubscribe();
     this.webPlayer.nextTrack().then(() => {
       console.log('Skipped to next track!');
       this.webPlayer.getCurrentState().then((data) => {
         this.loadedTrack = data;
+        this.minTemp = 0;
+        this.sliderSeekerValue = 0;
+        this.timeSeeker(data.duration);
       });
     });
   }
@@ -134,6 +144,7 @@ export class PlayerComponent implements OnInit {
         this.playerService.prepareUrl(data, this.device_id).subscribe((response: any) => {
           this.webPlayer.getCurrentState().then((currentStateData) => {
             this.loadedTrack = currentStateData;
+            console.log(this.loadedTrack);
             this.minTemp = 0;
             this.sliderSeekerValue = 0;
             if (this.time !== undefined) { this.time.unsubscribe(); }

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
   goToTracklist(list) {
     console.log(list.id);
-    this.router.navigate(['/music/track-list',list.id])
+    this.router.navigate(['/music/track-list', list.id]);
   }
 
   FeaturedPlaylists() {

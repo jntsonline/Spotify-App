@@ -44,7 +44,8 @@ import { CoverComponent } from './cover/cover.component';
 import { LibraryComponent } from './library/library.component';
 import { PlaylistsComponent } from './library/playlists/playlists.component';
 import { TrackListComponent } from './track-list/track-list.component';
-import { from } from 'rxjs';
+import { AlbumComponent } from './album/album.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -60,6 +61,9 @@ const appRoutes: Routes = [
     },
     {
       path: 'track-list/:list', component: TrackListComponent
+    },
+    {
+      path: 'album/:list', component: AlbumComponent
     }
   ] },
   { path: 'music/:access', component: MusicComponent}
@@ -77,7 +81,8 @@ const appRoutes: Routes = [
     CoverComponent,
     LibraryComponent,
     PlaylistsComponent,
-    TrackListComponent
+    TrackListComponent,
+    AlbumComponent
   ],
   imports: [
     Interceptor,

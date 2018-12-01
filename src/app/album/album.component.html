@@ -14,8 +14,8 @@
           </button>
         </div>
         <div class="artist"></div>
-        <div class="description">{{trackListData.description}}</div>
-        <div class="description">{{trackListData.tracks.total}} songs</div>
+        <div class="description">{{trackListData.artists[0].name}}</div>
+        <div class="description">{{trackListData.release_date}} • {{trackListData.total_tracks}} songs</div>
         <div>
             <button mat-button>
               <mat-icon aria-label="menu">radio</mat-icon>
@@ -47,7 +47,7 @@
     <ng-container matColumnDef="track.uri">
       <th mat-header-cell *matHeaderCellDef> No. </th>
       <td mat-cell *matCellDef="let element">
-          <button mat-icon-button (click)="playTrack(element.track.uri)" (mouseover)="element.showPlay = true" (mouseleave)="element.showPlay = false">
+          <button mat-icon-button (click)="playTrack(element.uri)" (mouseover)="element.showPlay = true" (mouseleave)="element.showPlay = false">
               <mat-icon aria-label="Play song" *ngIf="!element.showPlay">music_note</mat-icon>
               <mat-icon aria-label="Play song" *ngIf="element.showPlay">play_arrow</mat-icon>
           </button> 
@@ -57,19 +57,13 @@
     <!-- Name Column -->
     <ng-container matColumnDef="track.name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.track.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
   
     <ng-container matColumnDef="track.artists">
         <th mat-header-cell *matHeaderCellDef> Artist </th>
-        <td mat-cell *matCellDef="let element"> {{element.track.artists[0].name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.artists[0].name}} </td>
       </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="track.album">
-      <th mat-header-cell *matHeaderCellDef> Album </th>
-      <td mat-cell *matCellDef="let element" class="click-hover" (click)="goToAlbum(element.track)"> {{element.track.album.name}} </td>
-    </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>

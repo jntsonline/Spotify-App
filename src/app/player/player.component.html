@@ -9,7 +9,10 @@
             <div class="playing-details" fxFlex>
                 <span *ngFor="let artist of loadedTrack.track_window.current_track.artists">
                         {{artist.name}},
-                </span>                
+                </span>  
+                <span>
+                   - {{loadedTrack.track_window.current_track.album.name}}
+                </span>              
             </div>
         </div>
     </div>

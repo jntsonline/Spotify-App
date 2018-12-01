@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationCancel } from '@angular/router';
 import { URLSearchParams, } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-
+import { DOCUMENT } from '@angular/platform-browser';
 import { MusicService } from './music.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { MusicService } from './music.service';
   templateUrl: './music.component.html',
   styleUrls: ['./music.component.css']
 })
+
 export class MusicComponent implements OnInit {
   param1: any;
   param2: string;
@@ -48,6 +49,7 @@ constructor(
   ];
 
 }
+
 
   ngOnInit() {
   }

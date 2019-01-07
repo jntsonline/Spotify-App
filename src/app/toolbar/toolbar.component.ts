@@ -14,24 +14,19 @@ export class ToolbarComponent implements OnInit {
   constructor() { }
 
 
-  @HostListener("window:scroll", [])
+  @HostListener('window:scroll', [])
   onWindowScroll() {
     console.log('onScroll');
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 32) {
-     this.showShadow = true
+     this.showShadow = true;
      this.showBorder = false;
     } else {
-      this.showShadow = false
-      this.showBorder = true
+      this.showShadow = false;
+      this.showBorder = true;
     }
-  
   }
   ngOnInit() {
+    this.showBorder = true;
   }
-  
-
-
-  
-
 }

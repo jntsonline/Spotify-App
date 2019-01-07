@@ -649,6 +649,8 @@ MIT
 
 @angular/material/slider
 
+@angular/material/progress-spinner
+
 @angular/material/grid-list
 
 @angular/material/card

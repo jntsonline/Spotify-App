@@ -1,28 +1,20 @@
-
-  <mat-tab-group>
-    <mat-tab label="My Playlists">
-        <div class="container">
-            <div *ngIf="playlists">
-                <div class="headline-header">
-                    <span>My Playlists</span>
-                    <div class="pallete"></div>
-                </div>
-                  <mat-grid-list cols="5" rowHeight="290px" >
-                      <mat-grid-tile *ngFor="let playlist of playlists.items" (click)="goToTracklist(playlist)">
-                        <mat-card fxFlex class="card" matRipple>
-                            <div class="image-container"><img [src]="playlist.images[0].url"></div>
-                            
-                            <div class="playlist-info-contaier">
-                                <div class="title">{{playlist.name}}</div>
-                                <div class="sub-title">Playlist</div>
-                            </div>
-                        </mat-card>
-                      </mat-grid-tile>
-                    </mat-grid-list>
-              </div>
+<div class="container">
+        <div *ngIf="playlists">
+            <div class="headline-header">
+                <span>My Playlists</span>
+                <div class="pallete"></div>
+            </div>
+              <mat-grid-list cols="5" rowHeight="290px" >
+                  <mat-grid-tile *ngFor="let playlist of playlists.items" (click)="goToTracklist(playlist)">
+                    <mat-card fxFlex class="card" matRipple>
+                        <div class="image-container"><img [src]="playlist.images[0].url"></div>
+                        
+                        <div class="playlist-info-contaier">
+                            <div class="title">{{playlist.name}}</div>
+                            <div class="sub-title">Playlist</div>
+                        </div>
+                    </mat-card>
+                  </mat-grid-tile>
+                </mat-grid-list>
           </div>
-    </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
-  </mat-tab-group>
-  
+      </div>

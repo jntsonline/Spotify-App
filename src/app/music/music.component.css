@@ -10,7 +10,7 @@
     z-index: 2;
 }
 .nav-container {
-    padding: 86px 0px 0px 0px;
+    padding: 112px 0px 0px 0px;
     width: 72px;
     min-width: 72px;
     position: fixed;
@@ -29,6 +29,7 @@
     align-items: center;
     flex-direction: column;
     border-radius: 50%;
+    outline: none;
 }
 .nav-btn-icon{
     display: flex;

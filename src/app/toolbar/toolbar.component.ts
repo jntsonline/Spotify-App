@@ -36,7 +36,7 @@ export class ToolbarComponent implements OnInit {
       this.showBorder = true;
     }
   }
-  lookup(value: string, type): Observable<any> {
+  lookup(value: any, type): Observable<any> {
     return this.service.search(value.toLowerCase(), type)
     .pipe(
       map(results => results.artists.items), catchError(_ => {

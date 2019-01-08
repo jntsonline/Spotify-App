@@ -95,6 +95,10 @@ export class PlayerComponent implements OnInit {
     console.log(list.id);
     this.router.navigate(['/music/track-list', list.id]);
   }
+  goToAlbum(albumId) {
+    const splited = albumId.uri.split(':');
+     this.router.navigate(['/music/album', splited[2]]);
+   }
   play() {
     this.isPlaying = true;
     this.webPlayer.resume().then(() => {

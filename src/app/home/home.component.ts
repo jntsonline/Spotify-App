@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   featuredPlaylists: any;
   recentlyPlayed: any;
+  madedFor: any;
 
   AddToQueue(trackId) {
     console.log(trackId);
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
       console.log(data);
     });
   }
+
+
   RecentlyPlayer() {
     this.Service.getRecentlyPlayed().subscribe((data) => {
       console.log(data);
@@ -37,6 +40,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.FeaturedPlaylists();
     this.RecentlyPlayer();
+
   }
   constructor(
     private Service: HomeService,

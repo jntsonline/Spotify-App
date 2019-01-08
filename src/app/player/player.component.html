@@ -9,9 +9,9 @@
             <div class="playing-details" >
                 <span *ngFor="let artist of loadedTrack.track_window.current_track.artists">
                         {{artist.name}},
-                </span>  
-                <span>
-                   - {{loadedTrack.track_window.current_track.album.name}}
+                </span>  - 
+                <span class="click-hover" (click)="goToAlbum(loadedTrack.track_window.current_track.album)">
+                   {{loadedTrack.track_window.current_track.album.name}}
                 </span>              
             </div>
         </div>
@@ -31,7 +31,7 @@
             </button> 
     </div>
     <div fxFlex>
-        <div  class="current-time">
+        <div  class="current-time" *ngIf="loadedTrack">
             <div>{{minTemp | date:'mm:ss'}}/{{maxTemp | date:'mm:ss'}}</div>
         </div>  
     </div>

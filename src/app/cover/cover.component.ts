@@ -9,6 +9,7 @@ export class CoverComponent implements OnInit {
   showBtn;
   @Input() item: any;
   @Output() playClick = new EventEmitter();
+  cover: any;
 
   constructor() {
     this.showBtn = false;
@@ -18,6 +19,10 @@ export class CoverComponent implements OnInit {
     this.playClick.emit([this.item.track.uri]);
   }
   ngOnInit() {
+    if (this.item.type === 'playlist') {
+      this.cover = this.item.images[0].url;
+    } else {
+      this.cover = this.item.track.album.images[0].url;
+    }
   }
-
 }

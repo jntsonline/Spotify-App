@@ -1,7 +1,7 @@
 
-.cards-container {   
-   
-   
+.recent-container {   
+   height: 90px;
+   width: 90px;   
 }
 .card{
     margin: 8px;
@@ -32,12 +32,15 @@
     color: #ff5722;
     margin-top: 12px;
  }
-
+.loadingContainer {
+    height: 182px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
  .recentlyPlayed{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     height: 200px;
+     height: 182px;
      overflow: auto;
      margin-top: 32px;
  }

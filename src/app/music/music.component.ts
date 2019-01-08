@@ -32,7 +32,7 @@ constructor(
   this.param1 = new URLSearchParams(this.router.url);
   this.navs = [
     {
-      icon: 'play_arrow',
+      icon: 'home',
       name: 'Home',
       state: 'home'
     },

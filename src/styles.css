@@ -24,6 +24,11 @@ flex-direction: column !important;
   cursor: pointer;
   text-decoration: underline;
 }
+.mat-form-field-wrapper {
+  width: 100%;
+}
+
+
 .logo {
 
   width: 170px;

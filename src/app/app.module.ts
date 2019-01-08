@@ -5,7 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgGridModule } from 'ag-grid-angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './auth/token.interceptor';
@@ -17,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 /* Material Design */
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
@@ -37,6 +40,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSliderModule} from '@angular/material/slider';
 
 
+
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
@@ -48,7 +52,8 @@ import { AlbumComponent } from './album/album.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'music', component: MusicComponent, children: [
     {
       path: '', redirectTo: 'home', pathMatch: 'full'
@@ -92,6 +97,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AgGridModule.withComponents([]),
     HttpClientModule,
+    MatAutocompleteModule,
     FlexLayoutModule,
     MatInputModule,
     MatFormFieldModule,
@@ -111,11 +117,17 @@ const appRoutes: Routes = [
     MatRippleModule,
     MatTableModule,
     MatSliderModule,
-    FormsModule,    
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+      deps: []
+    }
    ],
   bootstrap: [AppComponent]
 })

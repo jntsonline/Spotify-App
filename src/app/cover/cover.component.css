@@ -1,8 +1,8 @@
 .cover-container {
     position: relative;
     cursor: pointer;
-    height: 90px;
-    width: 90px;
+    height: 100%;
+    width: 100%;
     border-radius: 2px;
 }
 .cover-container:hover {
@@ -14,8 +14,8 @@
     
 }
 .card img{
-    height: 90px;
-    width: 90px;
+    height: 100%;
+    width: 100%;
     border-radius: 2px;
  }
  .card-btns {

@@ -5,7 +5,21 @@
       </button> 
 
       <div class="logo"> </div>
-      <span fxFlex></span>
+      
+      <mat-form-field appearance="outline" class="custom-form" fxFlex color="warn">
+        <input placeholder="Search" matInput aria-label="State" [matAutocomplete]="auto" [formControl]="autoCompleteControl">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-optgroup [label]="artist">
+                <mat-option *ngFor="let item of searchAutoComplete | async " [value]="item.name">
+                    <img class="option-img" aria-hidden  [src]="item.images[2].url || null" height="32">                                     
+                    <span style="height: 16px;">{{item.name}}</span>
+                </mat-option>
+            </mat-optgroup>
+
+        </mat-autocomplete>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+ 
       <app-user></app-user>   
   </mat-toolbar-row>
   </mat-toolbar>

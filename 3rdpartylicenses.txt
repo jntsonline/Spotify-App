@@ -642,10 +642,16 @@ THE SOFTWARE.
 >>>>>>> Initial commit
 
 
+@angular/material/core
+
 @angular/material/toolbar
+
+@angular/material/form-field
 
 @angular/forms
 MIT
+
+@angular/material/autocomplete
 
 @angular/material/slider
 
@@ -653,9 +659,9 @@ MIT
 
 @angular/material/grid-list
 
-@angular/material/card
-
 @angular/material/tabs
+
+@angular/material/card
 
 @angular/material/table
 

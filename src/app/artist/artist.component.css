@@ -1,0 +1,57 @@
+.header-container {
+    display: flex;
+    margin: 64px 0 40px 0;
+  }
+  .view-header {
+    flex: 1;
+    padding: 8px;
+    overflow: hidden;
+  }
+  .cover {
+    width: 180px;
+    height: 180px;
+    border-radius: 2px;
+    position: relative;
+    background-color: #Fafafa
+  }
+  .cover img {
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+  .description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 0 0 24px;
+  }
+  .title{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    font-size: 34px;
+    line-height: 40px;
+    font-weight: 400;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .description {
+    display: inline-block;
+    height: 24px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .custom-fab {
+    background-color: white;
+    color: black;
+    margin: 0 16px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }

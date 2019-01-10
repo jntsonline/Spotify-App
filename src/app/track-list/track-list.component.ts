@@ -48,6 +48,11 @@ export class TrackListComponent implements OnInit {
     this.router.navigate(['/music/album', albumId.album.id]);
    }
 
+   goToArtist(artistId) {
+    console.log(artistId);
+    this.router.navigate(['/music/artist', artistId]);
+   }
+
   ngOnInit() {
     const routeParams = this.activatedRoute.snapshot.params;
     this.trackList(routeParams.list);

@@ -3,19 +3,18 @@
 <div class="route-container">
   <div class="header-container">
     <div class="view-header" fxLayout="row">
-      <div class="cover" *ngIf="trackListData">
-        <img [src]="trackListData.images[0].url">
+      <div class="cover" *ngIf="artistData">
+        <img [src]="artistData.images[0].url">
       </div>
-      <div class="description-container" *ngIf="trackListData">      
+      <div class="description-container" *ngIf="artistData">      
         <div class="title">
-          {{trackListData.name}}
+          {{artistData.name}}
           <button mat-mini-fab class="mat-elevation-z0 custom-fab" (click)="AddToQueue(trackListData.tracks)">
               <mat-icon aria-label="menu">play_arrow</mat-icon>
           </button>
         </div>
         <div class="artist"></div>
-        <div class="description">{{trackListData.description}}</div>
-        <div class="description">{{trackListData.tracks.total}} songs</div>
+        <div class="description">{{artistData.description}}</div>
         <div>
             <button mat-button>
               <mat-icon aria-label="menu">radio</mat-icon>
@@ -38,7 +37,7 @@
     </div>
   </div>
   
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
+  <table mat-table [dataSource]="topTrackListData" class="mat-elevation-z8" *ngIf="topTrackListData">
   
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -74,4 +73,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
   </table>
+
 </div>

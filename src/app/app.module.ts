@@ -49,6 +49,7 @@ import { LibraryComponent } from './library/library.component';
 import { PlaylistsComponent } from './library/playlists/playlists.component';
 import { TrackListComponent } from './track-list/track-list.component';
 import { AlbumComponent } from './album/album.component';
+import { ArtistComponent } from './artist/artist.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +70,9 @@ const appRoutes: Routes = [
     },
     {
       path: 'album/:list', component: AlbumComponent
+    },
+    {
+      path: 'artist/:list', component: ArtistComponent
     }
   ] },
   { path: 'music/:access', component: MusicComponent}
@@ -87,7 +91,8 @@ const appRoutes: Routes = [
     LibraryComponent,
     PlaylistsComponent,
     TrackListComponent,
-    AlbumComponent
+    AlbumComponent,
+    ArtistComponent
   ],
   imports: [
     Interceptor,

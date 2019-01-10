@@ -12,7 +12,7 @@ import { PlayerService } from '../player/player.service';
 export class AlbumComponent implements OnInit {
   dataSource;
   trackListData: Observable<any>;
-  displayedColumns: string[] = ['track.uri', 'track.name', 'track.artists'];
+  displayedColumns: string[] = ['track.uri', 'track.name', 'track.artists', 'track.duration_ms'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
